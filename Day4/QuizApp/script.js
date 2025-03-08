@@ -73,6 +73,9 @@ const createQuestionElement = (questionData) => {
 
   questionContainer.appendChild(question);
 
+  const optionContainer = document.createElement("div");
+  optionContainer.classList.add("option-container");
+
   const correctAnswerPosition = Math.floor(Math.random() * 4);
   let incorrectAnswersIndex = 0;
   for (let i = 0; i < 4; i++) {
@@ -80,6 +83,30 @@ const createQuestionElement = (questionData) => {
     option.classList.add("option");
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
+    const status = document.createElement("span");
+
+    checkbox.addEventListener("click", (event) => {
+      const childNodes = event.target.parentElement.parentElement.childNodes;
+      childNodes.forEach((option) => {
+        if (option.firstChild !== event.target) {
+          option.firstChild.checked = false;
+          option.lastChild.innerText = "";
+          option.lastChild.style.color = "";
+        }
+      });
+
+      if (event.target.checked) {
+        if (correctAnswerPosition === i) {
+          status.innerText = " CORRECT";
+          status.style.color = "green";
+        } else {
+          status.innerText = " WRONG";
+          status.style.color = "red";
+        }
+      } else {
+        status.innerText = "";
+      }
+    });
 
     option.appendChild(checkbox);
 
@@ -92,7 +119,9 @@ const createQuestionElement = (questionData) => {
     }
 
     option.appendChild(optionText);
-    questionContainer.appendChild(option);
+    option.appendChild(status);
+    optionContainer.appendChild(option);
+    questionContainer.appendChild(optionContainer);
   }
   return questionContainer;
 };
