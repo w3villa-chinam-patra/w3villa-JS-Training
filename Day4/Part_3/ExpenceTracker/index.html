@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./script.js" defer></script>
+    <title>Expense Tracker</title>
+  </head>
+  <body>
+    <h1>Expense Tracker</h1>
+    <div class="add-expense-section">
+      <label for="category-options">Choose category:</label>
+      <select id="category-options" name="category-options"></select>
+      <label for="expense-name">Expense:</label>
+      <input id="expense-name" type="text" />
+      <label for="amount">Amount:</label>
+      <input id="amount" type="number" />
+      <button class="add-button">Add</button>
+    </div>
+    <br />
+    <label for="category-filter">Filter by category:</label>
+    <select id="category-filter" name="category-filter">
+      <option value="all">All</option>
+    </select>
+    <table class="expenses">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Expense</th>
+          <th>Amount (₹)</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <div>
+      <h2>Total:</h2>
+      <div class="total"></div>
+    </div>
+  </body>
+</html>
